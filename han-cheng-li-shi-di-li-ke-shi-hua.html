@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>韩城历史地理可视化系统 - 狮王李的AI世界</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://kinglionsz.GitHub.io/han-cheng-li-shi-di-li-ke-shi-hua.html"><link rel="alternate" type="application/atom+xml" href="https://kinglionsz.GitHub.io/feed.xml" title="狮王李的AI世界 - RSS"><link rel="alternate" type="application/json" href="https://kinglionsz.GitHub.io/feed.json" title="狮王李的AI世界 - JSON"><meta property="og:title" content="韩城历史地理可视化系统"><meta property="og:site_name" content="狮王李的AI世界"><meta property="og:description" content=""><meta property="og:url" content="https://kinglionsz.GitHub.io/han-cheng-li-shi-di-li-ke-shi-hua.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://kinglionsz.GitHub.io/assets/css/style.css?v=11bee19e86e8eda2cf9a60efd975666d"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://kinglionsz.GitHub.io/han-cheng-li-shi-di-li-ke-shi-hua.html"},"headline":"韩城历史地理可视化系统","datePublished":"2025-04-13T15:28+08:00","dateModified":"2025-04-13T15:32+08:00","description":"","author":{"@type":"Person","name":"狮王李","url":"https://kinglionsz.GitHub.io/authors/shi-wang-li/"},"publisher":{"@type":"Organization","name":"狮王李"}}</script><noscript><style>img[loading] {
+                    opacity: 1;
+                }</style></noscript></head><body class="page-template"><header class="top js-header"><a class="logo" href="https://kinglionsz.GitHub.io/">狮王李的AI世界</a></header><main class="page"><article class="content"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>韩城历史地理可视化系统</h1></div></header></div><div class="entry-wrapper content__entry"><p>         </p><p>      </p><p>   <script>window._AMapSecurityConfig = {
+			securityJsCode: '857cf1f9e7ba6f73a1127c1f26c9b8a8'
+		};</script>   </p><p>   <script src="https://webapi.amap.com/maps?v=2.0&amp;key=51b94481d4c098a0c91f5df4ae63d17f"></script>   </p><p>   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>   </p><div id="loading">地图加载中，请稍候...</div><p>   </p><div id="header">       <h1>韩城历史地理可视化系统</h1>   </div><p>   </p><div id="info-panel">        <button id="close-info">×</button>        <div id="info-content"></div>   </div><p>   </p><div id="map-container"></div><p>   </p><div id="p5-canvas"></div><p>   </p><div id="controls">        <button>上一场景</button>         <button>下一场景</button>        <select id="scene-selector">           <option value="0">时间轴概览</option>           <option value="1">上古时期</option>           <option value="2">西周时期</option>           <option value="3">春秋战国</option>           <option value="4">秦汉时期</option>           <option value="5">唐宋元明</option>           <option value="6">近现代</option>           <option value="7">考古发现</option>           <option value="8">黄河流域</option>       </select>        <button>显示详细信息</button>    </div><p>   </p><p>   <script>// 初始化地图
+		var map = new AMap.Map('map-container', {
+			zoom: 10, // 地图显示的缩放级别
+			center: [110.82, 36.90] // 地图显示的中心点坐标
+		});
+
+		// 隐藏加载提示
+		map.on('complete', function() {
+			document.getElementById('loading').style.display = 'none';
+		});
+
+		// 韩城历史数据
+		const kanchengHistory = {
+			timeline: [{
+					dynasty: "上古时期",
+					time: "约公元前21世纪-前11世纪",
+					content: "韩城在夏、商时期被称为'龙门'，是大禹治水'凿龙门'的传说发生地。",
+					details: "《尚书·禹贡》记载:'导河积石，至于龙门'。龙门山位于今韩城与山西河津之间，黄河在此处峡谷宽度仅80米，形成'龙门三激浪'的壮观景象。",
+					coordinates: [110.82, 36.90]
+				},
+				{
+					dynasty: "西周时期",
+					time: "约公元前11世纪-前771年",
+					content: "韩国建立，成为周代重要封国，《诗经·大雅·韩奕》记载了韩侯受封之事。",
+					details: "《韩奕》是《诗经》中记载韩城历史最早的文献:'奕奕梁山，维禹甸之...韩侯受命,王亲命之'。西周韩国都城位于今韩城市区南10公里的韩原上。",
+					coordinates: [110.75, 36.85]
+				},
+				{
+					dynasty: "春秋战国",
+					time: "公元前770年-前221年",
+					content: "少梁邑时期，秦晋多次在此交战。梁带村发现芮国墓葬群。",
+					details: "《左传》记载:'秦伯伐晋，取少梁'。少梁是韩城在春秋时期的名称。2005年发现的梁带村芮国墓葬群出土了大量青铜器，证明这里是芮国后期都城所在地。",
+					coordinates: [110.83, 36.98]
+				},
+				{
+					dynasty: "秦汉时期",
+					time: "公元前221年-公元220年",
+					content: "秦惠文王十一年(前327)置夏阳县，后改韩城县。",
+					details: "《史记·秦本纪》:'十一年，县义渠...更名少梁曰夏阳'。汉代司马迁是夏阳人(今韩城芝川镇)，其《史记》多次提及韩城地区。",
+					coordinates: [110.82, 36.90]
+				},
+				{
+					dynasty: "唐宋元明",
+					time: "618年-1644年",
+					content: "多次更名，最终定为韩城县，成为关中东北部重镇。",
+					details: "隋开皇十八年(598)改称韩城县，后唐明宗天成元年(926)复名韩城县。元代建筑文庙、城隍庙保存至今。明代韩城商业繁荣，有'小北京'之称。",
+					coordinates: [110.82, 36.90]
+				},
+				{
+					dynasty: "近现代",
+					time: "1644年至今",
+					content: "2005年发现梁带村两周墓葬群，2012年发现陶渠遗址。",
+					details: "梁带村芮国墓葬群被评为'2005年全国十大考古发现'。陶渠遗址被认为是周平王东迁途中的'京师'所在地，可能是传说中的'京国'都城。",
+					coordinates: [110.83, 36.98]
+				}
+			],
+			archaeologySites: [{
+					name: "梁带村墓葬群",
+					location: [110.23, 36.98],
+					description: "西周晚期至春秋早期芮国贵族墓葬群",
+					details: "2005年发现，已发掘墓葬1300余座，出土青铜器、玉器等文物2万余件。M27号墓出土的'芮公'青铜器证明这里是芮国后期都城。",
+					time: "西周晚期-春秋早期(约前9世纪-前7世纪)"
+				},
+				{
+					name: "陶渠遗址",
+					location: [110.28, 36.95],
+					description: "西周时期京国都城遗址",
+					details: "2020年发掘，发现大型建筑基址、青铜器作坊等。学者推测这里可能是周平王东迁时暂住的'京师'，即《诗经》'王命申伯，式是南邦...往近王舅，南土是保'所指之地。",
+					time: "西周晚期(约前9世纪-前8世纪)"
+				}
+			],
+			yellowRiverPoints: [{
+					name: "黄河壶口瀑布",
+					lng: 111.85,
+					lat: 36.04,
+					description: "黄河上唯一的大瀑布",
+					details: "位于陕西宜川县与山西吉县交界处，瀑布宽50米，落差20米，是黄河最壮观的景观之一。"
+				},
+				{
+					name: "龙门",
+					lng: 111.76,
+					lat: 36.09,
+					description: "大禹治水凿龙门之处",
+					details: "《水经注》:'龙门...大禹所凿，广八十步，岩际镌迹尚存'。两岸悬崖对峙，形如门阙，黄河奔流其间。"
+				}
+			]
+		};
+
+		// 其他函数实现
+		function changeScene(direction) {
+			// 实现场景切换逻辑
+		}
+
+		function jumpToScene(scene) {
+			// 实现跳转到指定场景的逻辑
+		}
+
+		function toggleInfoPanel() {
+			// 实现显示/隐藏信息面板的逻辑
+		}
+
+		function closeInfoPanel() {
+			// 实现关闭信息面板的逻辑
+		}
+		let amap = null; // 初始化为null
+		let currentScene = 0;
+		let p5Canvas = null;
+		let markers = [];
+		let infoWindow = null;
+		let isMapReady = false;
+
+		// 初始化地图
+		function initMap() {
+			amap = new AMap.Map('map-container', {
+				center: [110.82, 36.90],
+				zoom: 10,
+				viewMode: '2D',
+				dragEnable: true,
+				scrollWheel: true
+			});
+
+			// 添加韩城标记
+			new AMap.Marker({
+				position: [110.82, 36.90],
+				map: amap,
+				title: '韩城',
+				content: '<div style="background-color:#fff;padding:5px;border-radius:3px;border:1px solid #ccc;">韩城</div>'
+			});
+
+			// 地图加载完成后设置标志
+			amap.on('complete', () => {
+				document.getElementById('loading').style.display = 'none';
+				isMapReady = true;
+				// 确保p5.js已经初始化后再更新视图
+				if (p5Canvas) {
+					updateMapView(currentScene);
+				}
+			});
+
+			// 创建信息窗体
+			infoWindow = new AMap.InfoWindow({
+				isCustom: true,
+				offset: new AMap.Pixel(0, -30)
+			});
+		}
+
+		// 基础绘图函数
+		function drawTimeline() {
+			clear();
+			background(240, 240, 240, 150);
+			stroke(0);
+			strokeWeight(2);
+			line(50, height / 2, width - 50, height / 2);
+
+			for (let i = 0; i < kanchengHistory.timeline.length; i++) {
+				let x = p5.prototype.map(i, 0, kanchengHistory.timeline.length - 1, 50, width - 50);
+				line(x, height / 2 - 5, x, height / 2 + 5);
+				fill(0);
+				textSize(14);
+				textAlign(CENTER);
+				text(kanchengHistory.timeline[i].dynasty, x, height / 2 + 25);
+				textSize(12);
+				text(kanchengHistory.timeline[i].content, x, height / 2 + 40);
+			}
+		}
+
+		function drawTimelineEvent(index) {
+			clear();
+			background(240, 240, 240, 150);
+			const event = kanchengHistory.timeline[index];
+
+			fill(0);
+			textSize(20);
+			textAlign(CENTER);
+			text(event.dynasty, width / 2, 50);
+			textSize(16);
+			text(event.time, width / 2, 80);
+
+			textSize(14);
+			textAlign(LEFT);
+			text(event.details, 50, 120, width - 100, height - 150);
+		}
+
+		function drawArchaeology() {
+			clear();
+			background(240, 240, 240, 150);
+			fill(0, 0, 255);
+			textSize(16);
+			textAlign(CENTER);
+			text("韩城考古遗址分布", width / 2, 30);
+
+			kanchengHistory.archaeologySites.forEach(site => {
+				let x = p5.prototype.map(site.location[0], 110.2, 110.3, 50, width - 50);
+				let y = p5.prototype.map(site.location[1], 36.9, 37.1, height - 50, 50);
+				fill(0, 0, 255);
+				ellipse(x, y, 12, 12);
+				fill(0);
+				textSize(12);
+				text(site.name, x + 15, y);
+				text(site.description, x + 15, y + 15);
+			});
+		}
+
+		function drawYellowRiver() {
+			clear();
+			background(240, 240, 240, 150);
+			fill(0, 100, 200);
+			textSize(16);
+			textAlign(CENTER);
+			text("黄河流域重要地点", width / 2, 30);
+
+			kanchengHistory.yellowRiverPoints.forEach(point => {
+				let x = p5.prototype.map(point.lng, 111.7, 111.9, 50, width - 50);
+				let y = p5.prototype.map(point.lat, 36.0, 36.1, height - 50, 50);
+				fill(0, 100, 200);
+				ellipse(x, y, 12, 12);
+				fill(0);
+				textSize(12);
+				text(point.name, x + 15, y);
+				text(point.description, x + 15, y + 15);
+			});
+		}
+
+		// 场景切换功能
+		function jumpToScene(index) {
+			if (index >= 0 && index <= 8) {
+				currentScene = parseInt(index);
+				document.getElementById('scene-selector').value = currentScene;
+
+				switch (currentScene) {
+					case 0:
+						drawTimeline();
+						break;
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						drawTimelineEvent(currentScene - 1);
+						break;
+					case 7:
+						drawArchaeology();
+						break;
+					case 8:
+						drawYellowRiver();
+						break;
+					default:
+						clear();
+						background(220, 220, 220, 150);
+						textSize(20);
+						textAlign(CENTER);
+						text("场景内容待开发", width / 2, height / 2);
+				}
+
+				if (isMapReady) {
+					updateMapView(currentScene);
+				}
+			}
+		}
+
+		// 场景切换按钮
+		function changeScene(dir) {
+			let newIndex = currentScene + dir;
+			if (newIndex >= 0 && newIndex <= 8) {
+				jumpToScene(newIndex);
+			}
+		}
+
+		function updateMapView(sceneIndex) {
+			if (!amap) return; // 确保地图对象存在
+
+			// 清除所有现有标记
+			markers.forEach(marker => {
+				amap.remove(marker);
+			});
+			markers = [];
+
+			switch (sceneIndex) {
+				case 0: // 时间轴
+					amap.setZoomAndCenter(10, [110.82, 36.90]);
+					break;
+				case 7: // 考古发现
+					amap.setZoomAndCenter(12, [110.25, 36.96]);
+					// 添加考古遗址标记
+					kanchengHistory.archaeologySites.forEach(site => {
+						const marker = new AMap.Marker({
+							position: site.location,
+							map: amap,
+							title: site.name
+						});
+
+						marker.on('click', () => {
+							infoWindow.setContent(`<div style="padding:5px;">
+                        <h3>${site.name}</h3>
+                        <p>${site.description}</p>
+                        <p>${site.details}</p>
+                    </div>`);
+							infoWindow.open(amap, site.location);
+						});
+						markers.push(marker);
+					});
+					break;
+				case 8: // 黄河流域
+					amap.setZoomAndCenter(8, [111.00, 35.50]);
+					// 添加黄河流域标记
+					kanchengHistory.yellowRiverPoints.forEach(point => {
+						const marker = new AMap.Marker({
+							position: [point.lng, point.lat],
+							map: amap,
+							title: point.name
+						});
+
+						marker.on('click', () => {
+							infoWindow.setContent(`<div style="padding:5px;">
+                        <h3>${point.name}</h3>
+                        <p>${point.description}</p>
+                        <p>${point.details}</p>
+                    </div>`);
+							infoWindow.open(amap, [point.lng, point.lat]);
+						});
+						markers.push(marker);
+					});
+					break;
+				default:
+					if (sceneIndex >= 1 && sceneIndex <= 5) {
+						const event = kanchengHistory.timeline[sceneIndex - 1];
+						amap.setZoomAndCenter(12, event.coordinates);
+
+						// 添加历史事件标记
+						const marker = new AMap.Marker({
+							position: event.coordinates,
+							map: amap,
+							title: event.dynasty
+						});
+
+						marker.on('click', () => {
+							infoWindow.setContent(`<div style="padding:5px;">
+                        <h3>${event.dynasty}</h3>
+                        <p>${event.time}</p>
+                        <p>${event.content}</p>
+                    </div>`);
+							infoWindow.open(amap, event.coordinates);
+						});
+						markers.push(marker);
+					} else {
+						amap.setZoomAndCenter(10, [110.82, 36.90]);
+					}
+			}
+		}
+
+		// 信息面板控制
+		function toggleInfoPanel() {
+			const panel = document.getElementById('info-panel');
+			panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+
+			if (panel.style.display === 'block') {
+				updateInfoContent();
+			}
+		}
+
+		function closeInfoPanel() {
+			document.getElementById('info-panel').style.display = 'none';
+		}
+
+		function updateInfoContent() {
+			const contentDiv = document.getElementById('info-content');
+			let content = '';
+
+			if (currentScene === 0) {
+				content = '<h2>韩城历史时间轴</h2>';
+				kanchengHistory.timeline.forEach(event => {
+					content += `<p><strong>${event.dynasty}</strong> (${event.time}): ${event.content}</p>`;
+				});
+			} else if (currentScene >= 1 && currentScene <= 5) {
+				const event = kanchengHistory.timeline[currentScene - 1];
+				content = `<h2>${event.dynasty}</h2>
+                  <p><strong>时间:</strong> ${event.time}</p>
+                  <p>${event.details}</p>`;
+			} else if (currentScene === 7) {
+				content = '<h2>考古发现</h2>';
+				kanchengHistory.archaeologySites.forEach(site => {
+					content += `<p><strong>${site.name}</strong> (${site.time}): ${site.details}</p>`;
+				});
+			} else if (currentScene === 8) {
+				content = '<h2>黄河流域重要地点</h2>';
+				kanchengHistory.yellowRiverPoints.forEach(point => {
+					content += `<p><strong>${point.name}</strong>: ${point.details}</p>`;
+				});
+			}
+
+			contentDiv.innerHTML = content;
+		}
+
+		// 初始化函数
+		function setup() {
+			p5Canvas = createCanvas(window.innerWidth, window.innerHeight);
+			p5Canvas.parent("p5-canvas");
+			frameRate(30);
+			noLoop();
+			jumpToScene(0);
+		}
+
+		function initialize() {
+			try {
+				initMap();
+				setup();
+			} catch (e) {
+				console.error('初始化错误:', e);
+				document.getElementById('loading').textContent = '系统初始化失败，请刷新页面';
+			}
+		}
+
+		// 添加DOM完全加载后再初始化
+		document.addEventListener('DOMContentLoaded', function() {
+			setTimeout(initialize, 100);
+		});
+
+		// 页面加载完成后初始化
+		window.onload = initialize;
+		window.addEventListener('resize', () => {
+			resizeCanvas(window.innerWidth, window.innerHeight);
+			redraw();
+		});</script></p></div></article></main><footer class="footer"><div class="wrapper"><div class="footer__copyright">Powered by Publii</div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://kinglionsz.GitHub.io/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://kinglionsz.GitHub.io/assets/js/scripts.min.js?v=700105c316933a8202041b6415abb233"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }</script></body></html>
