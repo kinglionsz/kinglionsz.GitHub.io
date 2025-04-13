@@ -3,21 +3,21 @@
     <title>狮王李的AI世界</title>
     <link href="https://kinglionsz.GitHub.io/feed.xml" rel="self" />
     <link href="https://kinglionsz.GitHub.io" />
-    <updated>2025-04-13T17:28:11+08:00</updated>
+    <updated>2025-04-13T17:29:21+08:00</updated>
     <author>
         <name>狮王李</name>
     </author>
     <id>https://kinglionsz.GitHub.io</id>
 
     <entry>
-        <title>index.html</title>
+        <title>index</title>
         <author>
             <name>狮王李</name>
         </author>
-        <link href="https://kinglionsz.GitHub.io/indexhtml.html"/>
-        <id>https://kinglionsz.GitHub.io/indexhtml.html</id>
+        <link href="https://kinglionsz.GitHub.io/index.html"/>
+        <id>https://kinglionsz.GitHub.io/index.html</id>
 
-        <updated>2025-04-13T17:28:11+08:00</updated>
+        <updated>2025-04-13T17:29:21+08:00</updated>
             <summary>
                 <![CDATA[
                     &lt;!DOCTYPE html&gt; &lt;html lang="zh-CN"&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;title&gt;韩城历史地理可视化系统&lt;/title&gt; &lt;!-- 页面样式 --&gt; &lt;style&gt; /* 全局样式，去除 body 的默认边距和内边距，设置字体，隐藏溢出内容 */ body { margin: 0; padding: 0; font-family: Arial, sans-serif; overflow: hidden; } /* 头部样式，设置绝对定位，背景颜色，圆角，阴影等 */ #header { position: absolute; top: 10px; left: 10px; z-index: 100; background-color: rgba(255,255,255,0.9); padding:&hellip;
