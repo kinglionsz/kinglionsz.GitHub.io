@@ -145,9 +145,21 @@
                 font-size: 14px;
             }
         }
+		
+		/* 在原有样式基础上添加以下内容 */
+        #particle-canvas {
+            z-index: -1; /* 确保粒子背景在底层 */
+        }
+        
+        #map-container {
+            z-index: 1; /* 确保地图容器在上层 */
+            position: relative; /* 保持原有定位 */
+        }
     </style>
 </head>
 <body class="min-h-screen relative overflow-x-hidden">
+
+
     <!-- 鼠标跟随特效 -->
     <div class="cursor-follower"></div>
     
@@ -196,7 +208,277 @@
                 <i class="ph-calendar text-3xl text-purple-400 mr-3"></i>
                 <h2 class="text-2xl font-bold neon-text">每日行程详解</h2>
             </div>
-            
+			
+			<!-- 第一天：贵阳高铁北站接站与自由活动 -->
+			<div class="glass-card p-6 mb-8 glow-on-hover">
+				<div class="flex items-start mb-4">
+					<div class="bg-gradient-to-br from-purple-900 to-blue-900 rounded-full w-10 h-10 flex items-center justify-center mr-4">
+						<span class="text-purple-300 font-bold">1</span>
+					</div>
+					<div>
+						<h3 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">第一天：贵阳高铁北站全攻略</h3>
+						<p class="text-sm text-gray-400 mt-1">2025年4月21日 · 接站入住与自由活动</p>
+					</div>
+				</div>
+				
+				<div class="grid md:grid-cols-2 gap-6">
+					<!-- 左侧：住宿与交通 -->
+					<div class="space-y-4">
+						<!-- 住宿推荐 -->
+						<div class="bg-gray-900/50 rounded-lg p-4 border-l-4 border-purple-500">
+							<h4 class="text-lg font-semibold mb-3 text-purple-400 flex items-center">
+								<i class="ph-buildings text-xl mr-2"></i> 高铁北站精品住宿
+							</h4>
+							<div class="space-y-3">
+								<div class="p-3 bg-gray-800/40 rounded-lg glow-on-hover">
+									<h5 class="font-medium text-blue-300 flex items-center">
+										<i class="ph-star text-yellow-400 mr-2"></i> 斯迈卡尔顿臻选观景酒店
+									</h5>
+									<ul class="text-sm text-gray-300 mt-1 space-y-1">
+										<li class="flex items-start">
+											<i class="ph-navigation-arrow text-xs text-purple-400 mt-1 mr-2"></i>
+											<span>高铁站地下车库直达，贵州元素客房，高层城市观景</span>
+										</li>
+										<li class="flex items-start">
+											<i class="ph-warning text-xs text-red-400 mt-1 mr-2"></i>
+											<span><strong>避坑</strong>：入口易拥堵，提前确认接站路线</span>
+										</li>
+									</ul>
+								</div>
+								
+								<div class="p-3 bg-gray-800/40 rounded-lg glow-on-hover">
+									<h5 class="font-medium text-blue-300 flex items-center">
+										<i class="ph-family text-green-400 mr-2"></i> 维也纳国际酒店
+									</h5>
+									<p class="text-sm text-gray-300 mt-1">观山湖区毕节路，现代商务风，近观山湖公园，地铁8分钟</p>
+								</div>
+								
+								<div class="p-3 bg-gray-800/40 rounded-lg glow-on-hover">
+									<h5 class="font-medium text-blue-300 flex items-center">
+										<i class="ph-heart-straight text-pink-400 mr-2"></i> 筑梦想酒店
+									</h5>
+									<p class="text-sm text-gray-300 mt-1">小清新风格，配套儿童游乐场，楼下即本地小吃城</p>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 交通指南 -->
+						<div class="bg-gray-900/50 rounded-lg p-4 border-l-4 border-blue-500">
+							<h4 class="text-lg font-semibold mb-3 text-blue-400 flex items-center">
+								<i class="ph-traffic-sign text-xl mr-2"></i> 交通与时间规划
+							</h4>
+							<div class="grid grid-cols-2 gap-2">
+								<div class="p-2 bg-blue-900/20 rounded">
+									<p class="text-xs text-blue-300">14:00-15:00</p>
+									<p class="text-sm">酒店入住休整</p>
+								</div>
+								<div class="p-2 bg-purple-900/20 rounded">
+									<p class="text-xs text-purple-300">15:30-18:00</p>
+									<p class="text-sm">观山湖公园/甲秀楼</p>
+								</div>
+								<div class="p-2 bg-green-900/20 rounded col-span-2">
+									<p class="text-xs text-green-300">19:00-21:00</p>
+									<p class="text-sm">酸汤鱼晚餐+白宫夜景</p>
+								</div>
+							</div>
+							<div class="mt-3 p-3 bg-gray-800/40 rounded">
+								<p class="text-sm text-yellow-400 flex items-start">
+									<i class="ph-warning-circle text-base mr-2"></i>
+									<span>地铁1号线末班22:30 · 晚高峰打车需提前预约</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					
+					<!-- 右侧：美食与景点 -->
+					<div class="space-y-4">
+						<!-- 美食推荐 -->
+						<div class="bg-gray-900/50 rounded-lg p-4 border-l-4 border-green-500">
+							<h4 class="text-lg font-semibold mb-3 text-green-400 flex items-center">
+								<i class="ph-fork-knife text-xl mr-2"></i> 北站美食地图
+							</h4>
+							<div class="flex flex-wrap gap-2">
+								<div class="grow p-2 bg-green-900/20 rounded glow-on-hover">
+									<p class="text-sm font-medium text-green-300">无名羊肉粉</p>
+									<p class="text-xs text-gray-400">鲜汤+薄荷叶</p>
+								</div>
+								<div class="grow p-2 bg-yellow-900/20 rounded glow-on-hover">
+									<p class="text-sm font-medium text-yellow-300">陈氏圆子粉</p>
+									<p class="text-xs text-gray-400">叉烧酥脆</p>
+								</div>
+								<div class="grow p-2 bg-red-900/20 rounded glow-on-hover">
+									<p class="text-sm font-medium text-red-300">周家猪脚火锅</p>
+									<p class="text-xs text-gray-400">17:00前到店</p>
+								</div>
+								<div class="grow p-2 bg-purple-900/20 rounded glow-on-hover">
+									<p class="text-sm font-medium text-purple-300">凯里老酸汤鱼</p>
+									<p class="text-xs text-gray-400">配豆腐圆子</p>
+								</div>
+							</div>
+							<div class="mt-3 p-3 bg-gray-800/40 rounded">
+								<p class="text-sm text-gray-300">
+									<i class="ph-map-pin text-red-400 mr-2"></i>
+									<strong>夜市推荐</strong>：青云市集（丝娃娃/烤鱼）· 二七路小吃街（肠旺面）
+								</p>
+							</div>
+						</div>
+						
+						<!-- 景点推荐 -->
+						<div class="bg-gray-900/50 rounded-lg p-4 border-l-4 border-yellow-500">
+							<h4 class="text-lg font-semibold mb-3 text-yellow-400 flex items-center">
+								<i class="ph-map-trifold text-xl mr-2"></i> 半日游精选
+							</h4>
+							<div class="space-y-3">
+								<div class="flex items-start p-2 bg-gray-800/40 rounded glow-on-hover">
+									<img src="https://placeholder.pics/svg/80x80/DEDEDE/555555/观山湖" 
+										 class="w-16 h-16 object-cover rounded mr-3" 
+										 alt="观山湖公园">
+									<div>
+										<h5 class="font-medium text-blue-300">观山湖公园</h5>
+										<p class="text-xs text-gray-400">4月樱花·白鹭群·城市落日</p>
+										<p class="text-xs text-green-400 mt-1">
+											<i class="ph-train text-xs mr-1"></i> 地铁1号线10分钟直达
+										</p>
+									</div>
+								</div>
+								
+								<div class="flex items-start p-2 bg-gray-800/40 rounded glow-on-hover">
+									<img src="https://placeholder.pics/svg/80x80/DEDEDE/555555/甲秀楼" 
+										 class="w-16 h-16 object-cover rounded mr-3" 
+										 alt="甲秀楼">
+									<div>
+										<h5 class="font-medium text-purple-300">甲秀楼夜景</h5>
+										<p class="text-xs text-gray-400">明代建筑·灯光秀·南明河畔</p>
+										<p class="text-xs text-yellow-400 mt-1">
+											<i class="ph-moon-stars text-xs mr-1"></i> 19:30晚间导览
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 天气与装备 -->
+				<div class="mt-6 grid md:grid-cols-3 gap-4">
+					<div class="bg-gray-900/50 rounded-lg p-4 text-center">
+						<div class="text-blue-400 flex justify-center items-center">
+							<i class="ph-cloud-sun text-3xl mr-2"></i>
+							<span class="text-xl font-bold">15-25℃</span>
+						</div>
+						<p class="text-sm text-gray-400 mt-1">多云转阵雨 · 湿度75%</p>
+					</div>
+					<div class="bg-gray-900/50 rounded-lg p-4 text-center">
+						<div class="text-purple-400 flex justify-center items-center">
+							<i class="ph-tshirt text-3xl mr-2"></i>
+							<span class="text-xl font-bold">速干T恤</span>
+						</div>
+						<p class="text-sm text-gray-400 mt-1">+防风外套 · 折叠伞</p>
+					</div>
+					<div class="bg-gray-900/50 rounded-lg p-4 text-center">
+						<div class="text-green-400 flex justify-center items-center">
+							<i class="ph-sneaker text-3xl mr-2"></i>
+							<span class="text-xl font-bold">防滑鞋</span>
+						</div>
+						<p class="text-sm text-gray-400 mt-1">甲秀楼石板路湿滑</p>
+					</div>
+				</div>
+				
+				<!-- 文化体验 -->
+				<div class="mt-6 bg-gray-900/50 rounded-lg p-4 border-l-4 border-pink-500">
+					<h4 class="text-lg font-semibold mb-3 text-pink-400 flex items-center">
+						<i class="ph-mask-happy text-xl mr-2"></i> 深度文化体验
+					</h4>
+					<div class="grid md:grid-cols-2 gap-4">
+						<div class="p-3 bg-pink-900/10 rounded glow-on-hover">
+							<h5 class="font-medium text-pink-300 flex items-center">
+								<i class="ph-moon text-purple-400 mr-2"></i> 甲秀楼夜游导览
+							</h5>
+							<p class="text-sm text-gray-300 mt-1">解密明清科举制度与贵州文人轶事</p>
+						</div>
+						<div class="p-3 bg-blue-900/10 rounded glow-on-hover">
+							<h5 class="font-medium text-blue-300 flex items-center">
+								<i class="ph-paint-brush text-green-400 mr-2"></i> 蜡染工坊体验
+							</h5>
+							<p class="text-sm text-gray-300 mt-1">北大资源梦想城（2小时/150元）</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+                <!-- 第一天 -->
+			<div class="glass-card p-6 mb-8 glow-on-hover">
+				<div class="flex items-start mb-4">
+					<div class="bg-purple-900/50 rounded-full w-10 h-10 flex items-center justify-center mr-4">
+						<span class="text-purple-400 font-bold">1</span>
+					</div>
+					<h3 class="text-xl font-bold text-purple-400">第一天：贵阳接站与自由活动</h3>
+				</div>
+				
+				<div class="grid md:grid-cols-2 gap-6">
+					<!-- 接站服务 -->
+					<div class="bg-gray-900/50 rounded-lg p-4">
+						<h4 class="text-lg font-semibold mb-3 text-blue-400 flex items-center">
+							<i class="ph-car text-xl mr-2"></i> 24小时接站服务
+						</h4>
+						<p class="text-gray-300 mb-3">我司安排工作人员签订旅游合同，当天可自由活动</p>
+						
+						<div class="mb-3 p-3 bg-blue-900/20 rounded">
+							<h5 class="font-semibold text-blue-400 flex items-center">
+								<i class="ph-map-pin mr-2"></i> 接站位置
+							</h5>
+							<p class="text-sm text-gray-300 mt-1">贵阳龙洞堡机场/贵阳北站/贵阳火车站</p>
+						</div>
+						
+						<div class="p-3 bg-purple-900/20 rounded">
+							<h5 class="font-semibold text-purple-400 flex items-center">
+								<i class="ph-clock mr-2"></i> 自由活动建议
+							</h5>
+							<ul class="text-sm text-gray-300 mt-1 space-y-1">
+								<li>甲秀楼：贵阳地标建筑，夜景优美</li>
+								<li>黔灵山公园：城市中的自然公园</li>
+								<li>青云路夜市：体验当地美食</li>
+							</ul>
+						</div>
+					</div>
+					
+					<!-- 酒店推荐 -->
+					<div class="bg-gray-900/50 rounded-lg p-4">
+						<h4 class="text-lg font-semibold mb-3 text-green-400 flex items-center">
+							<i class="ph-buildings text-xl mr-2"></i> 推荐住宿
+						</h4>
+						
+						<div class="space-y-3">
+							<div class="p-3 bg-gray-800/50 rounded border-l-4 border-blue-400">
+								<h5 class="font-semibold text-blue-400">火车站区域</h5>
+								<ul class="text-sm text-gray-300 mt-1 space-y-1">
+									<li><strong>林城万宜酒店</strong>：周边有银行、沃尔玛等设施</li>
+									<li><strong>喜来登酒店</strong>：环境优雅，适合商务旅游</li>
+									<li><strong>雅然商务宾馆</strong>：舒适经济型选择</li>
+								</ul>
+							</div>
+							
+							<div class="p-3 bg-gray-800/50 rounded border-l-4 border-green-400">
+								<h5 class="font-semibold text-green-400">其他区域</h5>
+								<ul class="text-sm text-gray-300 mt-1 space-y-1">
+									<li><strong>贵阳扬航酒店</strong>：近黔灵山公园、湿地公园</li>
+									<li><strong>盘江诺富特饭店</strong>：高端商务酒店</li>
+									<li><strong>贵阳凯乐酒店</strong>：繁华商圈，购物餐饮便利</li>
+								</ul>
+							</div>
+						</div>
+						
+						<div class="mt-3 p-3 bg-yellow-900/20 rounded">
+							<h5 class="font-semibold text-yellow-400 flex items-center">
+								<i class="ph-warning-circle mr-2"></i> 注意事项
+							</h5>
+							<p class="text-sm text-gray-300 mt-1">入住时请确认旅游合同细节；自由活动期间注意保管贵重物品</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		  
             <!-- 第二天 -->
             <div class="glass-card p-6 mb-8 glow-on-hover">
                 <div class="flex items-start mb-4">
@@ -555,9 +837,10 @@
         
         <!-- 作者信息 -->
         <footer class="text-center py-8 border-t border-gray-800/50">
-            <p class="text-gray-400 mb-2">© 2023 多彩贵州5天4夜奇幻之旅</p>
+            <p class="text-gray-400 mb-2">© 2025 多彩贵州5天4夜奇幻之旅</p>
             <p class="text-gray-500 text-sm">
                 作者：<span class="text-blue-400">狮王李</span> | 
+				关注公众号：<span class="text-blue-400">骑行的狮王李</span> |
                 邮箱：<a href="mailto:kinglionsz@foxmail.com" class="text-purple-400 hover:underline">kinglionsz@foxmail.com</a>
             </p>
         </footer>
@@ -706,7 +989,7 @@
             }
         }
         
-        function initParticles() {
+function initParticles() {
             const canvas = document.createElement('canvas');
             canvas.id = 'particle-canvas';
             canvas.style.position = 'fixed';
@@ -714,9 +997,11 @@
             canvas.style.left = '0';
             canvas.style.width = '100%';
             canvas.style.height = '100%';
-            canvas.style.zIndex = '-1';
+            canvas.style.zIndex = '-1'; // 确保在底层
             canvas.style.pointerEvents = 'none';
-            document.body.appendChild(canvas);
+            document.body.insertBefore(canvas, document.body.firstChild); // 插入到最前面
+            
+			document.body.appendChild(canvas);
             
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -763,6 +1048,14 @@
         }
         
         function initMap() {
+		
+		    // 在原有地图初始化代码前添加
+            const mapContainer = document.getElementById('map-container');
+            mapContainer.style.minHeight = '600px';
+            mapContainer.style.backgroundColor = 'transparent';
+            
+            // 其余地图初始化代码保持不变...
+			
             // 初始化地图
             map = new BMap.Map("map");
             const center = new BMap.Point(106.7133, 26.5833); // 贵阳坐标
@@ -914,9 +1207,8 @@
             });
         }
         
-        // 页面加载动画
+        // 修改页面加载函数
         window.addEventListener('load', () => {
-            // 隐藏加载屏幕
             setTimeout(() => {
                 const loadingScreen = document.getElementById('loading-screen');
                 gsap.to(loadingScreen, {
@@ -924,24 +1216,16 @@
                     duration: 1,
                     onComplete: () => {
                         loadingScreen.style.display = 'none';
+                        // 确保在加载屏幕消失后才初始化地图
+                        initMap();
+                        initScrollAnimations();
                     }
                 });
                 
-                // 初始化其他效果
-                initParticles();
-                initMap();
-                initScrollAnimations();
-                
-                // 添加地图加载后的动画
-                gsap.from("#map-container", {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    delay: 0.5
-                });
-            }, 2000);
+                initParticles(); // 先初始化粒子背景
+            }, 1000); // 缩短等待时间
         });
-        
+
         // 悬停效果
         document.querySelectorAll('.glow-on-hover').forEach(el => {
             el.addEventListener('mouseenter', () => {
