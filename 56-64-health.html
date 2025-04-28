@@ -138,9 +138,10 @@
             color: #1e40af; /* 统一标题颜色为深蓝色 */
         }
 
-        .light .bg-blue-900/30,
-        .light .bg-purple-900/30 {
-            background-color: #eff6ff; /* 浅色高亮区块 */
+        .light .bg-blue-900\/30,
+        .light .bg-purple-900\/30 {
+            background-color: #eeeef3 !important; /* 使用!important覆盖tailwind默认样式 */
+            /*opacity: 0.3;   保持原有透明度设置 */
         }
         
         .gradient-text {
