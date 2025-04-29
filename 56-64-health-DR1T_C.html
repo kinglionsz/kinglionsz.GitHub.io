@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport">
+    <title>人生两大坎：健康生命周期可视化指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            DEFAULT: '#121212',
+                            800: '#1e1e2e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        @import "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap";
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-green: #39ff14;
+            --dark-bg: #f8fafc;          /* 默认亮色背景 */
+            --light-text: #1a1a1a;       /* 默认深色文字 */
+            --card-bg: #ffffff;          /* 默认亮色卡片 */
+            --accent-color: #6366f1;
+            --transition-speed: .3s;
+        }
+
+        html.dark {
+            --dark-bg: #121212;
+            --light-text: #f5f5f5;      /* 暗色模式文字颜色 */
+            --card-bg: #1e1e2e;         /* 暗色模式卡片背景 */
+        }
+
+        /* 新增全局过渡效果 */
+        html {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: Noto Sans SC, sans-serif;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            transition: transform .3s, box-shadow .3s, border-color .3s;
+            box-shadow: 0 4px 20px #0000001a;
+        }
+
+        .section-title {
+            color: #2563eb;
+            text-shadow: 0 0 10px #3b82f680;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        /* 统一暗色模式适配 */
+        html.dark .card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        html:not(.dark) .card {
+            border: 1px solid #e5e7eb;
+        }
+
+        html.dark .bg-gray-800 {
+            background-color: #1e1e2e !important;
+        }
+
+        html:not(.dark) .bg-gray-800 {
+            background-color: #f3f4f6 !important;
+        }
+
+        /* 图表文字颜色统一控制 */
+        .chart-text,
+        .chart-legend {
+            color: var(--light-text) !important;
+        }
+
+    /* 在原有样式规则之后添加 */
+    html:not(.dark) .bg-blue-900\/30 {
+        background-color: #f0f4f8 !important; /* 更柔和的浅灰色 */
+    }
+
+    html:not(.dark) .bg-purple-900\/30 {
+        background-color: #f0f4f8 !important; /* 统一两种背景色 */
+    }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: .8s forwards fadeIn;
+        }
+        
+        .delay-1 { animation-delay: .1s; }
+        .delay-2 { animation-delay: .2s; }
+        .delay-3 { animation-delay: .3s; }
+        .delay-4 { animation-delay: .4s; }
+</style>
+
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex flex-col justify-between items-start mb-12 relative">
+            <div class="text-3xl font-bold gradient-text mb-4">人生两大坎：健康生命周期指南</div>
+            <h2 class="text-2xl font-bold section-title">56岁养肾护肝，64岁强心通血，这两关过了，后面往往越活越轻松。</h2>
+            
+            <button class="absolute top-0 right-0 p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors" id="theme-toggle">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </header>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- 保持原有卡片结构不变 -->
+            <div class="w-full md:w-1/2">
+                <section class="card p-6 fade-in">
+                     <!-- 56岁健康指南内容 -->
+                    <h2 class="text-2xl font-bold mb-4 section-title">56岁健康养生指南</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-blue-400">饮食建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-carrot text-green-500 mr-2 mt-1"></i> <span>多吃绿色蔬菜：菠菜、西蓝花、油麦菜</span></li>
+                                <li class="flex items-start"><i class="fas fa-apple-alt text-red-500 mr-2 mt-1"></i> <span>酸性水果：猕猴桃、草莓、柑橘</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-purple-400">运动建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-running text-yellow-400 mr-2 mt-1"></i> <span>适度运动：每天散步30分钟</span></li>
+                                <li class="flex items-start"><i class="fas fa-dumbbell text-pink-500 mr-2 mt-1"></i> <span>力量训练：每周2-3次</span></li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 p-4 bg-blue-900/30 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-2 text-blue-300">健康建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-400 mr-2 mt-1"></i> <span>保持规律作息，避免熬夜</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-400 mr-2 mt-1"></i> <span>保持心情舒畅，避免情绪波动</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+                        <canvas id="age56Chart"></canvas>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="w-full md:w-1/2">
+                <section class="card p-6 fade-in delay-1">
+                    <!-- 64岁健康指南内容 -->
+                    <h2 class="text-2xl font-bold mb-4 section-title">64岁健康养生指南</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-pink-400">饮食建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-seedling text-green-500 mr-2 mt-1"></i> <span>富含纤维的食物：全麦、豆类</span></li>
+                                <li class="flex items-start"><i class="fas fa-fish text-blue-500 mr-2 mt-1"></i> <span>优质蛋白质：鱼类、瘦肉</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-red-400">运动建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-heartbeat text-red-500 mr-2 mt-1"></i> <span>有氧运动：慢跑、游泳</span></li>
+                                <li class="flex items-start"><i class="fas fa-yin-yang text-purple-500 mr-2 mt-1"></i> <span>太极、瑜伽等柔和运动</span></li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 p-4 bg-purple-900/30 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-2 text-purple-300">健康建议</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-400 mr-2 mt-1"></i> <span>保持社交活动，避免孤独</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-400 mr-2 mt-1"></i> <span>定期体检，关注血压变化</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 56岁暗色OK -->
+                    <div class="mt-6 p-4 bg-gray-800 rounded-lg">   
+                        <canvas id="age64Chart"></canvas>
+                    </div>
+                </section>
+            </div>
+        </div>
+         <!-- 保持其他部分结构不变 -->
+        <div class="mt-12 text-center fade-in delay-2">
+            <h3 class="text-2xl font-bold mb-4 text-yellow-400">健康生命周期关键点</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                    <i class="fas fa-heartbeat text-red-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-medium">50岁-60岁</p>
+                    <p>养肾护肝</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                    <i class="fas fa-heart text-red-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-medium">60岁-70岁</p>
+                    <p>强心通血</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                    <i class="fas fa-brain text-purple-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-medium">70岁-80岁</p>
+                    <p>健脑益智</p>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                    <i class="fas fa-walking text-green-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-medium">80岁以上</p>
+                    <p>保持活力</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-12 p-6 bg-gray-800 dark:bg-gray-900 rounded-lg text-center fade-in delay-3">
+            <p class="text-lg font-medium dark:text-gray-200">作者：狮王李 | 邮箱：kinglionsz@foxmail.com<br>
+            关注公众号：骑行的狮王李</p>
+            <p class="text-sm mt-2 dark:text-gray-400">© 2025 健康生命周期指南</p>
+        </footer>
+    </div>
+    
+   
+    <!-- 以下是第四部分（JavaScript修正）：保持原有HTML结构不变... -->
+
+    <script>
+        
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+         // 改进的主题初始化函数
+         function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            updateThemeIcon(savedTheme);
+             // 初始化时立即更新图表
+             setTimeout(() => {
+                age56Chart.update();
+                age64Chart.update();
+            }, 100);
+        }
+
+        // 优化主题切换逻辑
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            const newTheme = isDark ? 'dark' : 'light';
+            
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            // 立即更新图表
+            age56Chart.update();
+            age64Chart.update();
+        }
+
+        // 更新主题图标
+        function updateThemeIcon(theme) {
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // 简化的颜色获取函数
+        function getChartColors() {
+                return {    
+                    gridColor: document.documentElement.classList.contains('dark') 
+                        ? 'rgba(255, 255, 255, 0.25)'
+                        : 'rgba(0, 0, 0, 0.25)',
+                    labelColor: 'var(--light-text)',
+                    tickColor: document.documentElement.classList.contains('dark') 
+                        ? 'rgba(255, 255, 255, 0.75)'
+                        : 'rgba(0, 0, 0, 0.75)'
+                };
+        }
+
+                
+        // 更新56岁雷达图配置
+        const age56Chart = new Chart(document.getElementById('age56Chart'), {
+            type: 'radar',
+            data: {
+                labels: [`饮食`, `运动`, `睡眠`, `情绪`, `社交`, `认知`],
+                datasets: [{
+                    label: `56岁健康指数`,
+                    data: [85, 70, 80, 75, 65, 78],
+                    backgroundColor: `rgba(0, 243, 255, 0.2)`,
+                    borderColor: `rgb(0, 243, 255,1)`,
+                    pointBackgroundColor: `rgb(0, 243, 255,1)`,
+                    pointBorderColor: `#fff`,
+                    pointHoverBorderColor: `rgba(0, 254, 255, 1)`
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        grid: {
+                            color: () => getChartColors().gridColor,
+                            lineWidth: 1.5  // 加粗网格线
+                        },
+                        pointLabels: {
+                            color: () => getChartColors().labelColor,
+                            font: {
+                                size: 14,  // 增大字体
+                                weight: '500'  // 中等字重
+                            }
+                        },
+                        ticks: {
+                            color: () => getChartColors().tickColor, // 新增此行
+                            backdropColor: 'transparent',
+                            z: 1,
+                            showLabelBackdrop: false  // 移除文字背景
+                        },
+                        angleLines: {
+                            color: () => getChartColors().gridColor  // 角度线颜色同步
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: () => getChartColors().labelColor,
+                            font: {
+                                size: 13
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        
+        // 64岁雷达图配置
+        // 64岁图表同步相同配置
+        const age64Chart = new Chart(document.getElementById('age64Chart'), {
+            type: 'radar',
+            data: {
+                labels: [`饮食`, `运动`, `睡眠`, `情绪`, `社交`, `认知`],
+                datasets: [{
+                    label: `64岁健康指标`,
+                    data: [90, 80, 75, 85, 90, 80],
+                    backgroundColor: `rgba(188, 19, 254, 0.2)`,
+                    borderColor: `rgba(188, 19, 254, 1)`,
+                    pointBackgroundColor: `rgba(188, 19, 254, 1)`,
+                    pointBorderColor: `#fff`,
+                    pointHoverBackgroundColor: `#fff`,
+                    pointHoverBorderColor: `rgba(188, 19, 254, 1)`
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        grid: {
+                            color: () => getChartColors().gridColor,
+                            lineWidth: 1.5  // 加粗网格线
+                        },
+                        pointLabels: {
+                            color: () => getChartColors().labelColor,
+                            font: {
+                                size: 14,  // 增大字体
+                                weight: '500'  // 中等字重
+                            }
+                        },
+                        ticks: {
+                            color: () => getChartColors().tickColor,
+                            backdropColor: 'transparent',
+                            z: 1,
+                            showLabelBackdrop: false  // 移除文字背景
+                        },
+                        angleLines: {
+                            color: () => getChartColors().gridColor  // 角度线颜色同步
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: () => getChartColors().labelColor,
+                            font: {
+                                size: 13
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 粒子动画初始化
+        const particles = document.querySelectorAll(`.particle`);
+        particles.forEach(a => {
+            a.style.left = `${Math.random() * 100}%`;
+            a.style.top = `${Math.random() * 100}%`;
+            a.style.animationDelay = `${Math.random() * 8}s`;
+        });
+
+        // 初始化主题和图表
+        initTheme();
+        feather.replace();
+    </script>
+</body>
+</html>
